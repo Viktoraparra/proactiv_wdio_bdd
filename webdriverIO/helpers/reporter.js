@@ -1,5 +1,5 @@
-import allure from "@wdio/allure-reporter"; 
-import logger from "./logger";
+import AllureReporter from "@wdio/allure-reporter"
+import logger from "./logger"
 
 /**
  * Global reporter used for both logger and Allure.
@@ -12,42 +12,24 @@ import logger from "./logger";
  * @todo 
  * 1. Add more param of allure reporter like add issue (to add a JIRA issue..etc)
  */
-function addStep(testid, loglevel, msg, toAllure, issueid) {
-    const validLogLevels = ["info", "debug", "warn", "error"];
-    
-    if (!testid) throw new Error(`Invalid testid: ${testid} field to report step`);
-    if (!msg) logger.error(`Given message: ${msg} is not valid to report`);
-    if (!validLogLevels.includes(loglevel)) logger.error(`Given loglevel: ${loglevel} is invalid and should be one of these values: ${validLogLevels.join(', ')}`);
-
+function addStep(testid, loglevel, msg, toAllure = true, issueid) {
+    let arr = ["info", "debug", "warn", "error"]
+    if (!testid) throw Error(`Invalid testid: ${testid} field to report step`)
+    if (!msg) logger.error(`Given message: ${msg} is not valid to report`)
+    if (!arr.includes(loglevel)) logger.error(`Given loglevel: ${loglevel} is invalid and should be one of these values: ${arr}`)
     try {
-        switch (loglevel) {
-            case "info":
-                logger.info(`[${testid}]: ${msg}`);
-                break;
-            case "debug":
-                logger.debug(`[${testid}]: ${msg}`);
-                break;
-            case "warn":
-                logger.warn(`[${testid}]: ${msg}`);
-                break;
-            case "error":
-                logger.error(`[${testid}]: ${msg}`);
-                allure.addStep(msg)
-                break;
-            default:
-                break;
+        if (loglevel === "info") logger.info(`[${testid}]: ${msg}`)
+        if (loglevel === "debug") logger.debug(`[${testid}]: ${msg}`)
+        if (loglevel === "warn") logger.warn(`[${testid}]: ${msg}`)
+        if (loglevel === "error") {
+            logger.error(`[${testid}]: ${msg}`)
+            AllureReporter.addStep(msg, {}, "failed") // Substep to fail if error
+        } else {
+            if (toAllure) AllureReporter.addStep(msg)
         }
-
-        if (toAllure && loglevel !== "error") {
-            allure.addStep(msg); // Paso normal sin error
-        }
-
-        if (issueid) {
-            allure.addIssue(issueid);
-        }
-
+        if (issueid) AllureReporter.addIssue(issueid)
     } catch (err) {
-        throw new Error(`Error reporting reporter step: ${err}`);
+        throw Error(`Error reporting reporter step, ${err}`)
     }
 }
 

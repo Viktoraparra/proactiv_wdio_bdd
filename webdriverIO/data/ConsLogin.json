@@ -1,0 +1,8 @@
+{
+    "successLogin": "Welcome back, Gerardo",
+    "emptyEmailMsg": "Please enter an email address.",
+    "emptyPasswordMsg": "Please enter your password.",
+    "invalidEmailMsg": "Please enter a valid email address",
+    "invalidPasswordMsg": "Password must be a minimum of 6 characters with at least 1 number and 1 alphabetic character",
+    "invalidEmailPasswordMsg": "The information you provided does not match our records. Please try again or contact Customer Service at 1-800-309-4796 for assistance."
+}
