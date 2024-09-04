@@ -1,1 +1,7 @@
+# Dependency directories
 node_modules
+.env
+
+# Project Specific
+webdriverIO/allure-report
+webdriverIO/allure-results

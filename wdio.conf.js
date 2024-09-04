@@ -16,7 +16,8 @@ exports.config = {
 
     maxInstances: 10,
 
-    capabilities: [{
+    capabilities: [
+      {
         browserName: 'chrome',
         "goog:chromeOptions": {
 
@@ -35,11 +36,19 @@ exports.config = {
       acceptInsecureCerts: true,
     }, 
     // {
-    //     browserName: 'firefox'
-    // }, {
+    //   browserName: 'firefox',
+    //   'moz:firefoxOptions': {
+    //       args: ['-headless']
+    //   }
+    // }, 
+    // {
     //     browserName: 'safari'
-    // }, {
-    //     browserName: 'MicrosoftEdge'
+    // }, 
+    // {
+    //   browserName: 'msedge',
+    //   'ms:edgeOptions': {
+    //       args: ['--headless']
+    //   }
     // }
 ],
     // Level of logging verbosity: trace | debug | info | warn | error | silent
@@ -164,14 +173,10 @@ exports.config = {
      * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
      * @param {object}                 context  Cucumber World object
      */
-    beforeScenario: function (world, context) {
-        // console.log(`>>World: ${JSON.stringify(world)}`);
-    
+    beforeScenario: async function (world, context) {
+        await browser.deleteCookies();
         let arr = world.pickle.name.split(/:/);
         if (arr.length > 0) browser.options.testid = arr[0];
-        // // @ts-ignore
-        // console.log(browser.options.testid);
-    
         if (!browser.options.testid)
           throw Error(
             `Error getting testid for current scenario: ${world.pickle.name}`
