@@ -1,0 +1,24 @@
+{
+    "pageTitle": "Featured-page",
+    "headerTitle": "Routine boosters our fans love.",
+    "products": {
+        "titles": [
+            "Proactiv Skin Purifying Mask",
+            "Proactiv Green Tea Moisturizer",
+            "Proactiv Blackhead Dissolving Gel",
+            "Proactiv Emergency Blemish Relief"
+        ],
+        "descriptions": [
+            "Banish blemishes fast with this Skin Purifying Mask. It's formulated with 6% sulfur to battle acne and cooling kaolin clay to refine pores, plus a special blend of antioxidants, vitamins, and botanicals that moisturize and condition skin. They all work together to deep clean skin, gently draw out impurities, treat breakouts, reduce surface oils, and help protect your skin from surface free radicals. Plus, they gently soothe and nourish your complexion leaving skin feeling soft and refreshed. It's a 10-minute mask that's the perfect addition to any skincare routine!",
+            "Give your skin a daily dose of moisture with this lightweight, soothing hydrator. This non-comedogenic formula was made especially for acne-prone skin, and is designed to deliver deep hydration and gently rejuvenate dull, tired-looking skin — without clogging pores. A combination of powerful antioxidants & botanicals, Green Tea Moisturizer relieves dry, thirsty, or irritated skin and leaves your complexion feeling soft and smooth. Use it every day, as your step three in the morning or at night, alone or under makeup, to soothe and nourish your skin.",
+            "Gently formulated to dissolve blackheads, unclog pores, absorb excess oil and deep clean blemish-causing impurities. Designed to soothe irritated skin and shrink the appearance of pores for a more radiant, glowing complexion. Designed to help restore softness and clarity to the skin.",
+            "Emergency Blemish Relief is an invisible spot treatment for unexpected blemishes that contains a powerful double dose of microcrystal benzoyl peroxide to target acne-causing bacteria inside pores to clear up acne blemishes. Perfect for on-the-go sport treatment. Specially formulated to help absorb excess oil and clear emergency blemishes fast."
+        ],
+        "images": [
+            "cfa0388c-3d40-4af6-bb89-53078cb918dc?_mzcb=_1725549173124",
+            "651247c6-e014-49b5-893e-00a0dd2d89e1?_mzcb=_1725549173124",
+            "46772060-6c78-45a1-900d-cbd2c9f1fc6c?_mzcb=_1725549173124",
+            "d1ea79e3-1d50-425a-82df-60f9c3067389?_mzcb=_1725549173124"
+        ]
+    }
+}
