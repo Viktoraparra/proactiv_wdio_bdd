@@ -3,7 +3,6 @@ const { default: reporter } = require("../../helpers/reporter");
 const Page = require("./page");
 
 class LoginPage extends Page {
-  // Selectores
   get headerLogin() {
     return $('//h1[@class="mz-pagetitle"]');
   }
@@ -234,6 +233,7 @@ class LoginPage extends Page {
         "error",
         `Error verifying login page: ${error.message}`
       );
+      error.message = `Error verifying login page: ${error.message}`
       throw error;
     }
   }
@@ -298,14 +298,14 @@ class LoginPage extends Page {
         "info",
         "Sign In button clicked successfully."
       );
-    } catch (err) {
+    } catch (error) {
       reporter.addStep(
         "clickSignIn",
         "error",
-        `Error clicking Sign In button: ${err.message}`
+        `Error clicking Sign In button: ${error.message}`
       );
-      err.message = `Error clicking Sign In button: ${err.message}`;
-      throw err;
+      error.message = `Error clicking Sign In button: ${error.message}`;
+      throw error;
     }
   }
 
@@ -324,13 +324,14 @@ class LoginPage extends Page {
         "info",
         "Login process completed successfully."
       );
-    } catch (err) {
+    } catch (error) {
       reporter.addStep(
         "login",
         "error",
-        `Error during the login process: ${err.message}`
+        `Error during the login process: ${error.message}`
       );
-      throw err;
+      error.message = `${error.message}`;
+      throw error;
     }
   }
 }

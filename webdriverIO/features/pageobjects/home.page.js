@@ -14,6 +14,22 @@ class HomePage extends Page {
     return $("//img[@title='Sign In']");
   }
 
+  get shopNavBtn() {
+    return $("//li[@class='menu-item acq-shop shopCategoryLandingpage']");
+  }
+
+  get offerNavBtn() {
+    return $('//li[@class="menu-item offers "]');
+  }
+
+  get blogNavBtn() {
+    return $('//li[@class="menu-item offers "]');
+  }
+
+  get featuredNavBtn() {
+    return $('//li[@class="menu-item featured "]');
+  }
+
   /**
    * Opens the home page by navigating to the base URL.
    * Verifies that the page title is correct after opening.
@@ -26,7 +42,9 @@ class HomePage extends Page {
         "Opening the base URL: " + process.env.BASE_URL
       );
       await super.open(process.env.BASE_URL);
-      await expect(browser).toHaveTitle("For All Skin Types | Acne & Skincare Treatment | Proactiv®");
+      await expect(browser).toHaveTitle(
+        "For All Skin Types | Acne & Skincare Treatment | Proactiv®"
+      );
       reporter.addStep("open", "info", "Successfully opened the base URL.");
     } catch (error) {
       reporter.addStep(
@@ -34,6 +52,7 @@ class HomePage extends Page {
         "error",
         `Failed to open the base URL: ${error.message}`
       );
+      error.message = `${error.message}`;
       throw error;
     }
   }
@@ -60,6 +79,7 @@ class HomePage extends Page {
         "error",
         `Error closing the form: ${error.message}`
       );
+      error.message = `${error.message}`;
       throw error;
     }
   }
@@ -83,6 +103,65 @@ class HomePage extends Page {
         "error",
         `Error clicking the login button: ${error.message}`
       );
+      error.message = `${error.message}`;
+      throw error;
+    }
+  }
+
+  /**
+   * Navigates to the featured page by clicking the navigation button.
+   *
+   * This method waits for the featured navigation button to be clickable and then clicks it
+   * to navigate to the featured page. If successful, it logs an informational message.
+   * If an error occurs during this process, it logs an error message and throws the error.
+   *
+   * @throws Will throw an error if the navigation button is not clickable or if clicking it fails.
+   */
+
+  async navigateToFeatured() {
+    try {
+      await this.featuredNavBtn.waitForClickable();
+      await this.featuredNavBtn.click();
+      reporter.addStep(
+        "navigateToFeatured",
+        "info",
+        "Navigated to the featured page successfully."
+      );
+    } catch (error) {
+      reporter.addStep(
+        "navigateToFeatured",
+        "error",
+        `Error navigating to the featured page: ${error.message}`
+      );
+      error.message = `${error.message}`;
+      throw error;
+    }
+  }
+
+  /**
+   * Navigates to the Shop page.
+   *
+   * This method waits for the Shop navigation button to become clickable, then clicks it to navigate
+   * to the Shop page. It logs the navigation step to the reporter.
+   *
+   * @throws Will throw an error if the Shop navigation button is not clickable or if clicking it fails.
+   */
+  async navigateToShop() {
+    try {
+      await this.shopNavBtn.waitForClickable();
+      await this.shopNavBtn.click();
+      reporter.addStep(
+        "navigateToFeatured",
+        "info",
+        "Navigated to the featured page successfully."
+      );
+    } catch (error) {
+      reporter.addStep(
+        "navigateToFeatured",
+        "error",
+        `Error navigating to the featured page: ${error.message}`
+      );
+      error.message = `${error.message}`;
       throw error;
     }
   }
