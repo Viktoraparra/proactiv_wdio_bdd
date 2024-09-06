@@ -35,13 +35,13 @@ class ProductsPage extends Page {
         ExpectedDescription
       );
       reporter.addStep(
-        "validatesProductsTitleAndDescription",
+        "validates products title and description",
         "info",
         `Successfully validated the product title: "${ExpectedTitle}" and description: "${ExpectedDescription}".`
       );
     } catch (error) {
       reporter.addStep(
-        "validatesProductsTitleAndDescription",
+        "validates products title and description",
         "error",
         `Validation failed: ${error.message}`
       );
@@ -76,9 +76,9 @@ class ProductsPage extends Page {
  * @param {number} index - The index of the product in the list of product cards.
  * @returns {Promise<string>} - The retail price of the product.
  */
-  async getRetailPriceOfProduct(index) {
+  async getProductEffect(index) {
     return await this.productCards[index]
-      .$('//h2[@class="productlisting_title"]')
+      .$('//div[@class="productlisting_desc"]')
       .getText();
   }
 
@@ -121,34 +121,29 @@ class ProductsPage extends Page {
    * provided in the respective arrays.
    *
    * @param {Array<string>} expectedTitles - An array of expected product titles to validate.
-   * @param {Array<string>} expectedRetailPrices - An array of expected retail prices for the products.
+   * @param {Array<string>} expectedproductEffects - An array of expected retail prices for the products.
    * @param {Array<string>} expectedMembersPrices - An array of expected members prices for the products.
    * @throws Will throw an error if any product's title, retail price, or members price does not match the expected values.
    */
   async validateProductTitleRetailMembersPrice(
     expectedTitles,
-    expectedRetailPrices,
+    expectedproductEffects,
     expectedMembersPrices
   ) {
     try {
       for (let i = 0; i < (await this.productCards.length); i++) {
         const title = await this.getTitleOfProduct(i);
-        const retailPrice = await this.getRetailPriceOfProduct(i);
-        const memberPrice = await this.getRetailPriceOfProduct(i);
+        const productEffect = await this.getProductEffect(i);
+        const memberPrice = await this.getMembersPriceOfProduct(i);
         await expect(title).toContain(expectedTitles[i]);
-        await expect(retailPrice).toContain(expectedRetailPrices[i]);
+        await expect(productEffect).toContain(expectedproductEffects[i]);
         await expect(memberPrice).toContain(expectedMembersPrices[i]);
         reporter.addStep(
           "validate Product Title Retail and Members Prices",
           "info",
-          `Successfully validated product "${title}" with retail price "${retailPrice}" and member price "${memberPrice}".`
+          `Successfully validated product "${title}" with retail price "${productEffect}" and member price "${memberPrice}".`
         );
       }
-      reporter.addStep(
-        "validate Product Title Retail and Members Prices",
-        "info",
-        `Validation of all product cards completed successfully.`
-      );
     } catch (error) {
       reporter.addStep(
         "validate Product Title Retail and Members Prices",
@@ -172,12 +167,12 @@ class ProductsPage extends Page {
    */
   async searchProductAndAddToCart(expectedTitle) {
     try {
-      for (let i = 0; i < (await this.productCards.length); i++) {
+      for (let i = 0; i < await this.productCards.length; i++) {
         const title = await this.getTitleOfProduct(i);
         if (title.toLowerCase().includes(expectedTitle.toLowerCase())) {
           await this.clickBuyNowButton(i);
           reporter.addStep(
-            "searchProductAndAddToCart",
+            "search product and add to cart",
             "info",
             `Clicked on product: "${title}"`
           );
@@ -186,7 +181,7 @@ class ProductsPage extends Page {
       }
     } catch (error) {
       reporter.addStep(
-        "searchProductAndAddToCart",
+        "search product and add to cart",
         "error",
         `Error occurred while searching for product with title "${expectedTitle}": ${error.message}`
       );

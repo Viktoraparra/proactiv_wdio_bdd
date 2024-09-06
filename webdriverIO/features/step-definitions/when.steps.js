@@ -46,7 +46,17 @@ When(/^User clicks on (.*) and navigates to product page$/, async (product) => {
 When(/^User is on (.*) validates available products$/, async (productType) => {
   try {
     await ProductsPage.validatesProductsTitleAndDescription(productType, consMask.Description)
-    await ProductsPage.validateProductTitleRetailMembersPrice(consMask.products.titles, consMask.products.RetailPrice, consMask.products.membersPrice)
+    await ProductsPage.validateProductTitleRetailMembersPrice(consMask.products.titles,consMask.products.ProductEffects,consMask.products.membersPrice)
+  } catch (error) {
+    error.message = `${error.message}`;
+    throw error;
+  }
+});
+
+When(/^User add (.*) to cart$/, async (productType) => {
+  try {
+    await ProductsPage.searchProductAndAddToCart(productType)
+    await browser.pause(10000)
   } catch (error) {
     error.message = `${error.message}`;
     throw error;

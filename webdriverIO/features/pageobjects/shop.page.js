@@ -57,8 +57,8 @@ class ShopPage extends Page {
   async selectProductOptionFromLeftNavBar(productType) {
     try {
       for (let i = 0; i < await this.productsLeftNavLinks.length; i++) {
-        const productlist =  await this.productsLeftNavLinks[i].getText();
-        if (productlist.toLowerCase().includes(productType.toLowerCase())) {
+        const productText =  await this.productsLeftNavLinks[i].getText();
+        if (productText.toLowerCase().includes(productType.toLowerCase())) {
           await this.productsLeftNavLinks[i].click();
           reporter.addStep(
             "selectProductOptionFromLeftNavBar",
