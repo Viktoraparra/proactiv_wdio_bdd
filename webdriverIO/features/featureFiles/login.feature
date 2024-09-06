@@ -1,6 +1,6 @@
 Feature: Login functionality
   Validation of login
-  @Regresion
+  @Regresion @Login
   Scenario Outline: <TestID>: User tries to login with different combinations of email and password
     Given User is on main page and navigates to login page
     When User enters <email> and <password>

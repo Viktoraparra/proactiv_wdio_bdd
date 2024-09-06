@@ -1,7 +1,7 @@
 ## WebdriverIO Test Automation
 
 # Overview
-This repository contains test automation scripts using WebdriverIO, a popular JavaScript-based end-to-end testing framework. The tests are designed to validate user interactions and functionality on the application.
+This repository contains test automation scripts using WebdriverIO, a popular JavaScript-based end-to-end testing framework. The tests are designed to validate user interactions and functionality on the Proactive application.
 
 ## Table of Contents
 
@@ -15,16 +15,12 @@ This repository contains test automation scripts using WebdriverIO, a popular Ja
 
 ## Features
 
-- **End-to-End Testing**: Automated tests using Cypress and WebdriverIO.
-- **Multi-Browser Testing**: Test across Chrome, Firefox, Edge, and Safari.
-- **Continuous Integration**: GitHub Actions setup for running tests on push and pull requests.
-- **Docker Integration**: Run tests in isolated environments using Docker.
+- **End-to-End Testing**: Automated tests using WebdriverIO.
 - **Reporting**: Allure reports for detailed test results.
 
 ## Requirements
 
 - Node.js (v16.x or later)
-- Docker and Docker Compose
 - Git
 - A GitHub account for repository access
 - [Visual Studio Code](https://code.visualstudio.com/) (Optional but recommended)
@@ -70,9 +66,42 @@ The configuration for WebdriverIO is located in wdio.conf.js. This file defines 
 
 To run the WebdriverIO tests locally, use the following npm script:
 
-``npm test ``
+Use the following npm scripts to execute the tests:
 
-This command will execute the tests and generate reports using Allure.
+#### Run all tests
+
+``npm test``
+
+Run specific test categories:
+
+#### Regression Tests
+
+``npm run regression``
+
+#### Navigation Tests
+
+``npm run test:nav``
+
+#### Login Tests
+
+``npm run test:login``
+
+#### Cart Tests
+
+``npm run test:cart``
+
+#### Smoke Tests
+
+``npm run test:smoke``
+
+#### Regression Tests (alternative)
+
+``npm run test:regression``
+
+#### Login and Navigation Tests
+
+``npm run login:nav``
+
 
 #### Run Specific Tests
 
@@ -86,8 +115,17 @@ If you need to run a specific test file, you can specify it directly in the comm
 
 Test results are integrated with Allure for detailed reporting. Reports can be generated and opened using the following npm script:
 
+#### Generate Allure Report
 
-``npm run allure``
+``npm run allure:generate``
+
+#### Open Allure Report
+
+``npm run allure:open``
+
+#### Generate and Open Allure Report
+
+``allure:gen:open``
 
 This command will generate the Allure report from the results stored in webdriverIO/allure-results and open it in the browser.
 

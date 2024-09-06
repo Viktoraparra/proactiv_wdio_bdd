@@ -8,11 +8,14 @@
     "wdio": "wdio run ./wdio.conf.js",
     "regression": "npx wdio run ./wdio.conf.js --cucumberOpts.tagExpression '@regression'",
     "test:nav": "npx wdio run ./wdio.conf.js --cucumberOpts.tagExpression '@Nav'",
+    "test:login": "npx wdio run ./wdio.conf.js --cucumberOpts.tagExpression '@Login'",
+    "test:cart": "npx wdio run ./wdio.conf.js --cucumberOpts.tagExpression '@Cart'",
     "test:smoke": "npx wdio run ./wdio.conf.js --cucumberOpts.tagExpression '@Smoke'",
     "test:regression": "npx wdio run ./wdio.conf.js --cucumberOpts.tagExpression '@Regression'",
     "login:nav": "npx wdio run ./wdio.conf.js --cucumberOpts.tagExpression '@Login and @Nav'",
     "allure:generate": "allure generate allure-results --clean -o allure-report",
-    "allure:open": "allure generate ./webdriverIO/allure-results --output ./webdriverIO/allure-report --clean && allure open ./webdriverIO/allure-report"
+    "allure:open": " allure open ./webdriverIO/allure-report",
+    "allure:gen:open": "allure generate ./webdriverIO/allure-results --output ./webdriverIO/allure-report --clean && allure open ./webdriverIO/allure-report"
   },
   "repository": {
     "type": "git",
