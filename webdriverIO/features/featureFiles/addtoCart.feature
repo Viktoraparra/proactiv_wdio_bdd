@@ -1,6 +1,6 @@
 Feature: Adding Products to cart
 
-  @Cart
+  @Cart @Regression
   Scenario: <TestID>: User logs in and navigates to shop page navigates to specific type of product
     Given User logs in with email <email> and password <password>
     Then User should see <outcome>
@@ -11,6 +11,7 @@ Feature: Adding Products to cart
     Examples:
       | TestID    | email                   | password  | productType | outcome           |
       | CRT_TC001 | gproactiv+bgr@gmail.com | Tpcweb123 | Masks       | successfull Login |
+
       # For this Scenario for executing is requiered to have mini-cart empty of products
       # need to indicated is failling due existing duplicates elements int the domain
 
@@ -25,7 +26,7 @@ Feature: Adding Products to cart
 
     Examples:
       | TestID    | email                   | password  | outcome           | productType | product                         | qty | price |
-      | CRT_TC003 | gproactiv+bgr@gmail.com | Tpcweb123 | successfull Login | Masks       | Amazonian Clay Mask (3 oz/28 g) |   1 |    32 |
+      | CRT_TC002 | gproactiv+bgr@gmail.com | Tpcweb123 | successfull Login | Masks       | Amazonian Clay Mask (3 oz/28 g) |   1 |    32 |
     # For this Scenario for executing is requiered to have mini-cart empty of products
 
   @Cart @Smoke
@@ -40,4 +41,4 @@ Feature: Adding Products to cart
 
     Examples:
       | TestID    | email                   | password  | outcome           | productType | product                       | qty | price |
-      | CRT_TC003 | gproactiv+bgr@gmail.com | Tpcweb123 | successfull Login | Treatments  | ProactivMD Adapalene Gel 0.1% |   1 | 14.40 |
+      | CRT_TC002 | gproactiv+bgr@gmail.com | Tpcweb123 | successfull Login | Treatments  | ProactivMD Adapalene Gel 0.1% |   1 | 14.40 |
