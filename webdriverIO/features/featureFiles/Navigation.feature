@@ -1,6 +1,6 @@
 Feature: Navigation to pages
 
-  @Nav
+  @Regression @Nav
   Scenario: <TestID>: User logs in and navigates to featured page validate all featured products and navigates to asepcific product page
     Given User logs in with email <email> and password <password>
     When User navigates to the Feature page

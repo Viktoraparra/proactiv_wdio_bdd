@@ -145,7 +145,6 @@ class FeaturePage extends Page {
     try {
       for (let i = 0; i < (await this.featureCard.length); i++) {
         const title = await this.getTitleOfCard(i);
-        console.log(expectedTitle.toLowerCase());
         if (title.toLowerCase().includes(expectedTitle.toLowerCase())) {
           await this.clickShopNowButton(i);
           reporter.addStep(

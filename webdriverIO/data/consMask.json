@@ -1,0 +1,24 @@
+{
+    "Title": "Masks",
+    "Description": "Revive stressed out skin with our dermatologist-developed face masks, featuring skin-loving ingredients that target dryness & breakouts.",
+    "products": {
+        "titles": [
+            "Skin Purifying Mask (3 fl oz/89 ml)",
+            "Skin Purifying Mask (1fl oz/30 ml)",
+            "Amazonian Clay Mask (3 oz/85 g)",
+            "Amazonian Clay Mask (1 oz/28 g)"
+        ],
+        "RetailPrice": [
+            "40",
+            "20",
+            "40",
+            "20"
+        ],
+        "membersPrice": [
+            "32",
+            "16",
+            "32",
+            "16"
+        ]
+    }
+}
