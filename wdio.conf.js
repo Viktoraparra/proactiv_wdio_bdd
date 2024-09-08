@@ -54,6 +54,7 @@ exports.config = {
   logLevel: "info",
 
   bail: 0,
+  baseUrl: process.env.BASE_URL,
 
   waitforTimeout: 15000,
 
