@@ -1,52 +1,58 @@
-name: ProactiveTest
+name: Test
 
 on:
   push:
     branches:
       - main
   pull_request:
-    branches:
-      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+        - uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+        - uses: actions/setup-node@v4
+          with:
+            node-version: '20.x'
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18' 
+        - name: Install
+          run: npm install
 
-    - name: Install dependencies
-      run: npm install
+        - name: Test
+          run: npm test
+        - uses: actions/upload-artifact@v1
+          if: failure()
+          with:
+            name: logs
+            path: logs
 
-    - name: Run WebdriverIO tests
-      run: npm test
+        - name: Generate allure report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results:   webdriverIO/allure-results
+          gh_pages: gh-pages
+          allure_report: webdriverIO/allure-report
+          allure_history: webdriverIO/allure-history
+          keep_reports: 3
 
-    - name: Generate Allure Report
-      run: |
-        npm install -g allure-commandline
-        allure generate ./webdriverIO/allure-results --output ./webdriverIO/allure-report
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.WDIO_TOKEN }}
+          publish_dir: webdriverIO/allure-history
 
-    - name: Upload Allure Report as artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: allure-report
-        path: ./webdriverIO/allure-report
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./webdriverIO/allure-report
+      - name: Post the link to the report
+        if: always()
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: 'Test report'
+          state: 'success'
+          sha: ${{ github.event.pull_request.head.sha }}
+          target_url: https://Viktoraparra.github.io/proactiv_wdio_bdd/${{ github.run_number }}/index.html
