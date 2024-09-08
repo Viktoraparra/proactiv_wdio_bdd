@@ -43,9 +43,6 @@ jobs:
           name: logs
           path: webdriverIO/logs
 
-      - name: Publish Test Summary Results
-        run: npx github-actions-ctrf ctrf/ctrf-report.json  
-
       - name: Generate allure report
         uses: simple-elf/allure-report-action@master
         if: always()
@@ -59,10 +56,11 @@ jobs:
 
       - name: Deploy report to Github Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: webdriverIO/allure-history
+          publish_dir: ./public
+          commit_message: ${{ github.event.head_commit.message }}
 
       - name: Post the link to the report
         if: always()
@@ -73,3 +71,5 @@ jobs:
           state: 'success'
           sha: ${{ github.event.pull_request.head.sha }}
           target_url: https://Viktoraparra.github.io/proactiv_wdio_bdd/${{ github.run_number }}/index.html
+
+

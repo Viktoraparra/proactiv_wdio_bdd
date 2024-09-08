@@ -94,7 +94,7 @@ exports.config = {
     strict: false,
     tagExpression: "",
     timeout: 60000,
-    ignoreUndefinedDefinitions: false,
+    ignoreUndefinedDefinitions: true, // ignore undefined definitions when creating steps turn false
   },
 
   //
