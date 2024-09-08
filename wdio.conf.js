@@ -74,6 +74,15 @@ exports.config = {
         useCucumberStepReporter: true,
       },
     ],
+    ,
+    [
+      'json-file', // Usa este reporter si necesitas generar un archivo JSON.
+      {
+        outputDir: 'json-results',
+        fileName: 'ctrf-report',
+        logLevel: 'error'
+      }
+    ]
   ],
 
   cucumberOpts: {
