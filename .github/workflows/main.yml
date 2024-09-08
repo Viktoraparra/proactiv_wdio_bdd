@@ -31,6 +31,9 @@ jobs:
           name: logs
           path: logs
 
+      - name: Publish Test Summary Results
+        run: npx github-actions-ctrf ctrf/ctrf-report.json  
+
       - name: Generate allure report
         uses: simple-elf/allure-report-action@master
         if: always()
