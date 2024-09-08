@@ -9,7 +9,10 @@ let debug = process.env.DEBUG;
 exports.config = {
   runner: "local",
   environment: "QA",
-  specs: [`${process.cwd()}/webdriverIO/features/featureFiles/**/*.feature`],
+  specs: [
+    `./webdriverIO/features/featureFiles/**/*.feature`
+    // `${process.cwd()}/webdriverIO/features/featureFiles/**/*.feature` // I Use this for local runnings
+  ],
   exclude: [
     // 'path/to/excluded/files'
   ],
@@ -78,7 +81,8 @@ exports.config = {
 
   cucumberOpts: {
     require: [
-      `${process.cwd()}/WebdriverIO/features/step-definitions/**/*.steps.js`,
+      `./WebdriverIO/features/step-definitions/**/*.steps.js`,
+      // `${process.cwd()}/WebdriverIO/features/step-definitions/**/*.steps.js`, I Use this for local Running
     ],
     backtrace: false,
     requireModule: [],
