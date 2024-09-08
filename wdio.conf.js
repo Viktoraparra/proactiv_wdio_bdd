@@ -74,15 +74,15 @@ exports.config = {
         useCucumberStepReporter: true,
       },
     ],
-    ,
     [
-      'json-file', // Usa este reporter si necesitas generar un archivo JSON.
-      {
-        outputDir: 'json-results',
-        fileName: 'ctrf-report',
-        logLevel: 'error'
-      }
-    ]
+      "dot",
+      [
+        "json",
+        {
+          outputDir: "./webdriverIO/Results",
+        },
+      ],
+    ],
   ],
 
   cucumberOpts: {
@@ -194,7 +194,7 @@ exports.config = {
         `Error getting testid for current scenario: ${world.pickle.name}`
       );
 
-      // console.log(world);
+    // console.log(world);
   },
   /**
    *
@@ -284,8 +284,10 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  // onComplete: function(exitCode, config, capabilities, results) {
-  // },
+  onComplete: function (exitCode, config, capabilities, results) {
+    const mergeResults = require("wdio-json-reporter/mergeResults");
+    mergeResults("./Results", "results-*", "wdio-custom-filename.json");
+  },
   /**
    * Gets executed when a refresh happens.
    * @param {string} oldSessionId session ID of the old session
