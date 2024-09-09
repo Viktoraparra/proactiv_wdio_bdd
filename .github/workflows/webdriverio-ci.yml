@@ -46,7 +46,6 @@ jobs:
         uses: simple-elf/allure-report-action@master
         if: always()
         id: allure-report
-        run: npm allure:gen:open
         with:
           allure_results: webdriverIO/allure-results
           gh_pages: gh-pages
