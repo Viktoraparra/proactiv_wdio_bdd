@@ -56,7 +56,6 @@ When(/^User is on (.*) validates available products$/, async (productType) => {
 When(/^User add (.*) to cart$/, async (productType) => {
   try {
     await ProductsPage.searchProductAndAddToCart(productType)
-    await browser.pause(10000)
   } catch (error) {
     error.message = `${error.message}`;
     throw error;

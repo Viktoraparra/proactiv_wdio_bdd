@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Create Allure Results Directory
+        run: mkdir -p webdriverIO/allure-results
+
       - name: Run tests
         env:
           HEADLESS: ${{ secrets.HEADLESS }}
@@ -37,11 +40,11 @@ jobs:
           BASE_URL: ${{ secrets.BASE_URL }}
         run: npm test
 
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: allureReport
-          path: ./webdriverIO/allure-report
+          name: allure-report
+          path: webdriverIO/allure-report
 
       - name: Generate allure report
         uses: simple-elf/allure-report-action@master
@@ -61,15 +64,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           commit_message: ${{ github.event.head_commit.message }}
-
-      - name: Post the link to the report
-        if: always()
-        uses: Sibz/github-status-action@v1
-        with:
-          authToken: ${{ secrets.GITHUB_TOKEN }}
-          context: 'Proactiv Test report'
-          state: 'success'
-          sha: ${{ github.event.pull_request.head.sha }}
-          target_url: https://Viktoraparra.github.io/proactiv_wdio_bdd/${{ github.run_number }}/index.html
 
 
