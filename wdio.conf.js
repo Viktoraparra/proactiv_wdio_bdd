@@ -10,7 +10,7 @@ exports.config = {
   runner: "local",
   environment: "QA",
   specs: [
-    `./webdriverIO/features/featureFiles/**/*.feature`
+    './webdriverIO/features/featureFiles/*.feature'
     // `${process.cwd()}/webdriverIO/features/featureFiles/**/*.feature` // I Use this for local runnings
   ],
   exclude: [
@@ -81,7 +81,7 @@ exports.config = {
 
   cucumberOpts: {
     require: [
-      `./WebdriverIO/features/step-definitions/**/*.steps.js`,
+      './WebdriverIO/features/step-definitions/*.steps.js',
       // `${process.cwd()}/WebdriverIO/features/step-definitions/**/*.steps.js`, I Use this for local Running
     ],
     backtrace: false,

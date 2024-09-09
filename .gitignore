@@ -5,3 +5,4 @@ node_modules
 # Project Specific
 webdriverIO/allure-report
 webdriverIO/allure-results
+Dockerfile
