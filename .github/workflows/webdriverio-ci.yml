@@ -40,8 +40,8 @@ jobs:
       - uses: actions/upload-artifact@v1
         if: failure()
         with:
-          name: logs
-          path: webdriverIO/logs
+          name: allureReport
+          path: ./webdriverIO/allure-report
 
       - name: Generate allure report
         uses: simple-elf/allure-report-action@master
