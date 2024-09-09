@@ -10,7 +10,7 @@ exports.config = {
   runner: "local",
   environment: "QA",
   specs: [
-    './webdriverIO/features/featureFiles/*.feature'
+    './webdriverIO/features/featureFiles/**/*.feature'
     // `${process.cwd()}/webdriverIO/features/featureFiles/**/*.feature` // I Use this for local runnings
   ],
   exclude: [
@@ -54,7 +54,7 @@ exports.config = {
     // }
   ],
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: "info",
+  logLevel: "debug",
 
   bail: 0,
   baseUrl: process.env.BASE_URL,
@@ -81,7 +81,7 @@ exports.config = {
 
   cucumberOpts: {
     require: [
-      './WebdriverIO/features/step-definitions/*.steps.js',
+      './WebdriverIO/features/step-definitions/**/*.steps.js',
       // `${process.cwd()}/WebdriverIO/features/step-definitions/**/*.steps.js`, I Use this for local Running
     ],
     backtrace: false,
@@ -93,7 +93,7 @@ exports.config = {
     source: true,
     strict: false,
     tagExpression: "",
-    timeout: 60000,
+    timeout: 20000,
     ignoreUndefinedDefinitions: false, // ignore undefined definitions when creating steps turn false
   },
 
