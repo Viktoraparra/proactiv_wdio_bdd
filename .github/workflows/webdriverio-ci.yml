@@ -29,8 +29,8 @@ jobs:
 
       - name: Clean cache and install dependencies
         run: |
-        npm cache clean --force
-        npm ci
+          npm cache clean --force
+          npm ci
 
       - name: Create Allure Results Directory
         run: mkdir -p webdriverIO/allure-results
